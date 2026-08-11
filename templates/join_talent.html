@@ -1,51 +1,70 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card" style="background-color: var(--bg-cream); border: 5px solid var(--dark-green); border-radius: 15px; box-shadow: 8px 8px 0px var(--lime-green);">
-                <div class="card-body p-5">
-                    <h2 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 900; color: var(--dark-green); text-transform: uppercase;">
-                        JOIN THE TALENT POOL
+        <div class="col-lg-7 col-md-9 mx-auto" style="max-width: 700px; margin: 0 auto;">
+            
+            <!-- Outer Card matching the Create Team layout -->
+            <div style="background-color: #FFFFFF; border: 1px solid var(--dark-green); border-radius: 8px; padding: 40px; position: relative;">
+                
+                <!-- Corner Accents (Top Left & Bottom Right) mimicking the screenshot -->
+                <div style="position: absolute; top: -1px; left: -1px; width: 30px; height: 30px; border-top: 3px solid var(--lime-green); border-left: 3px solid var(--lime-green); border-top-left-radius: 8px;"></div>
+                <div style="position: absolute; bottom: -1px; right: -1px; width: 30px; height: 30px; border-bottom: 3px solid var(--lime-green); border-right: 3px solid var(--lime-green); border-bottom-right-radius: 8px;"></div>
+
+                <!-- Header Section -->
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <!-- Hexagon Badge -->
+                    <div style="background-color: var(--dark-green); color: var(--orange); display: inline-block; padding: 4px 20px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%); margin-bottom: 15px; letter-spacing: 1px;">
+                        SOLO DEVELOPER
+                    </div>
+                    
+                    <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 900; color: var(--dark-green); text-transform: uppercase; font-size: 2rem; margin-bottom: 10px;">
+                        JOIN THE POOL
                     </h2>
-                    <p class="text-center mb-4" style="font-weight: 700; color: var(--text-dark);">
-                        List your skills so team leaders can recruit you!
+                    <p style="font-weight: 600; color: #444; font-size: 0.95rem;">
+                        Fill out the details below to publish your SIH talent profile.
                     </p>
-
-                    <form method="POST" action="{{ url_for('join_talent_pool') }}">
-                        
-                        <div class="mb-3">
-                            <label class="form-label" style="font-weight: 900; color: var(--orange); text-transform: uppercase;">Your Tech Stack & Skills</label>
-                            <input type="text" class="form-control" name="skills" placeholder="e.g., Python, React, UI/UX Design, Figma" value="{{ existing_profile.skills if existing_profile else '' }}" required style="border: 3px solid var(--dark-green); border-radius: 8px;">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label" style="font-weight: 900; color: var(--orange); text-transform: uppercase;">The Pitch (What do you want to build?)</label>
-                            <textarea class="form-control" name="bio" rows="3" placeholder="e.g., I'm a backend dev looking to join a cybersecurity or AI project." required style="border: 3px solid var(--dark-green); border-radius: 8px;">{{ existing_profile.bio if existing_profile else '' }}</textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label" style="font-weight: 900; color: var(--orange); text-transform: uppercase;">WhatsApp Number</label>
-                            <input type="text" class="form-control" name="whatsapp" placeholder="10-digit number (No +91 needed)" value="{{ existing_profile.whatsapp if existing_profile else '' }}" required style="border: 3px solid var(--dark-green); border-radius: 8px;">
-                            <small style="font-weight: 700;">Team leaders will use this to recruit you.</small>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="form-label" style="font-weight: 900; color: var(--orange); text-transform: uppercase;">Home Campus</label>
-                            <select class="form-select" name="campus" required style="border: 3px solid var(--dark-green); border-radius: 8px; font-weight: 700;">
-                                <option value="JIIT 128" {% if existing_profile and existing_profile.campus == 'JIIT 128' %}selected{% endif %}>JIIT 128</option>
-                                <option value="JIIT 62" {% if existing_profile and existing_profile.campus == 'JIIT 62' %}selected{% endif %}>JIIT 62</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" class="btn w-100" style="background-color: var(--lime-green); color: var(--dark-green); font-weight: 900; font-size: 1.2rem; border: 3px solid var(--dark-green); padding: 12px;">
-                            {% if existing_profile %}UPDATE MY PROFILE{% else %}PUBLISH MY PROFILE{% endif %}
-                        </button>
-                    </form>
-
                 </div>
+
+                <!-- The Form -->
+                <form method="POST" action="{{ url_for('join_talent_pool') }}" style="margin: 0;">
+                    
+                    <!-- Skills Input -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="font-weight: 800; color: var(--dark-green); font-size: 0.85rem; text-transform: uppercase; display: block; margin-bottom: 8px; letter-spacing: 0.5px;">YOUR TECH STACK & SKILLS *</label>
+                        <input type="text" name="skills" placeholder="e.g. React, Python, UI/UX" value="{{ existing_profile.skills if existing_profile else '' }}" required style="display: block; width: 100%; box-sizing: border-box; padding: 12px 15px; border: 1px solid #b5cbbb; border-radius: 4px; font-weight: 500; font-size: 0.95rem; background-color: #f4f8f5; color: #333; font-family: inherit; outline: none;">
+                    </div>
+
+                    <!-- Campus Select -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="font-weight: 800; color: var(--dark-green); font-size: 0.85rem; text-transform: uppercase; display: block; margin-bottom: 8px; letter-spacing: 0.5px;">CAMPUS BASE *</label>
+                        <select name="campus" required style="display: block; width: 100%; box-sizing: border-box; padding: 12px 15px; border: 1px solid #b5cbbb; border-radius: 4px; font-weight: 500; font-size: 0.95rem; background-color: #f4f8f5; color: #333; font-family: inherit; outline: none; cursor: pointer; appearance: auto;">
+                            <option value="JIIT 128" {% if existing_profile and existing_profile.campus == 'JIIT 128' %}selected{% endif %}>JIIT 128</option>
+                            <option value="JIIT 62" {% if existing_profile and existing_profile.campus == 'JIIT 62' %}selected{% endif %}>JIIT 62</option>
+                        </select>
+                    </div>
+
+                    <!-- WhatsApp Input -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="font-weight: 800; color: var(--dark-green); font-size: 0.85rem; text-transform: uppercase; display: block; margin-bottom: 8px; letter-spacing: 0.5px;">WHATSAPP NUMBER *</label>
+                        <input type="text" name="whatsapp" placeholder="10-digit number (No +91 needed)" value="{{ existing_profile.whatsapp if existing_profile else '' }}" required style="display: block; width: 100%; box-sizing: border-box; padding: 12px 15px; border: 1px solid #b5cbbb; border-radius: 4px; font-weight: 500; font-size: 0.95rem; background-color: #f4f8f5; color: #333; font-family: inherit; outline: none;">
+                    </div>
+
+                    <!-- Bio Input -->
+                    <div style="margin-bottom: 35px;">
+                        <label style="font-weight: 800; color: var(--dark-green); font-size: 0.85rem; text-transform: uppercase; display: block; margin-bottom: 8px; letter-spacing: 0.5px;">THE PITCH *</label>
+                        <textarea name="bio" rows="4" placeholder="Briefly describe what you want to build or the teams you want to join..." required style="display: block; width: 100%; box-sizing: border-box; padding: 12px 15px; border: 1px solid #b5cbbb; border-radius: 4px; font-weight: 500; font-size: 0.95rem; background-color: #f4f8f5; color: #333; font-family: inherit; resize: vertical; outline: none;">{{ existing_profile.bio if existing_profile else '' }}</textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" style="display: block; width: 100%; box-sizing: border-box; background-color: #79d75b; color: var(--dark-green); font-weight: 900; font-size: 1rem; border: 1px solid var(--dark-green); border-radius: 4px; padding: 16px; text-transform: uppercase; cursor: pointer; text-align: center; font-family: 'Montserrat', sans-serif; transition: opacity 0.2s;">
+                        {% if existing_profile %}UPDATE PROFILE{% else %}PUBLISH PROFILE{% endif %}
+                    </button>
+                </form>
+
             </div>
+            
         </div>
     </div>
 </div>
