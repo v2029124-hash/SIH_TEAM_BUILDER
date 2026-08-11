@@ -1,0 +1,48 @@
+generator client {
+  provider  = "prisma-client-py"
+  interface = "sync"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id              String         @id @default(uuid())
+  name            String
+  email           String         @unique
+  password_hash   String
+  whatsapp_number String
+  campus          String
+  created_at      DateTime       @default(now())
+  teams           Team[]
+  talentProfile   TalentProfile?
+}
+
+model Team {
+  id                String   @id @default(uuid())
+  leader_id         String
+  leader            User     @relation(fields: [leader_id], references: [id])
+  team_name         String
+  campus            String
+  current_members   Int      @default(1)
+  max_members       Int      @default(6)
+  required_skills   String // Comma-separated list for simplicity
+  description       String?
+  problem_statement String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+}
+
+model TalentProfile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skills    String // e.g., "Python, React, UI/UX"
+  bio       String // e.g., "Looking for a blockchain or AI project"
+  whatsapp  String
+  campus    String // JIIT 128 or JIIT 62
+  createdAt DateTime @default(now())
+}

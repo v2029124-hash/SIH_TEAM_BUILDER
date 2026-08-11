@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <div class="angled-banner">NEW TEAM</div>
+        <h2>BUILD YOUR <span>SQUAD</span></h2>
+        <p style="color: #4a4a4a; font-weight: 600; margin-top: 10px;">Fill out the details below to publish your SIH team listing.</p>
+    </div>
+    
+    <form action="/create" method="POST" class="team-form" id="createForm">
+        
+        <div class="form-group">
+            <label>Team Name *</label>
+            <input type="text" name="team_name" required placeholder="e.g. Code Warriors">
+        </div>
+        
+        <div class="form-group">
+            <label>Team Campus Base *</label>
+            <select name="campus" required>
+                <option value="JIIT 128">JIIT 128</option>
+                <option value="JIIT 62">JIIT 62</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Current Members Count *</label>
+            <input type="number" name="current_members" min="1" max="5" value="1" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Required Skills * (Comma separated)</label>
+            <input type="text" name="required_skills" placeholder="e.g. React, Python, UI/UX" required>
+        </div>
+        
+        <div class="form-group">
+            <label>YOUR NEED</label>
+            <textarea name="description" rows="4" placeholder="Briefly describe the problem statement or your solution..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary full-width" style="border: 2px solid var(--sih-dark-green);">PUBLISH TEAM</button>
+    </form>
+</div>
+{% endblock %}

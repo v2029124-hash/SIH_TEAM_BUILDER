@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIH Team Builder | Innovation JIIT</title>
+    <!-- The ?v=1.1 forces the browser to load the latest CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.2">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand" style="text-decoration: none;">
+            <h1>SIH <span>TEAM BUILDER</span></h1>
+            <div class="presented-by">Presented by Innovation JIIT</div>
+        </a>
+        <div class="nav-actions">
+            <a href="/explore" class="nav-link">Explore Teams</a>
+            <a href="{{ url_for('explore_talent') }}" class="nav-link">RECRUIT TALENT</a>
+            
+            {% if session.get('user_id') %}
+                <!-- Logged In View -->
+                <a href="/create" class="btn btn-primary">+ CREATE TEAM</a>
+                <a href="/logout" class="nav-link" style="margin-left: 15px; font-size: 0.85rem;">Logout</a>
+            {% else %}
+                <!-- Logged Out View -->
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/signup" class="btn btn-primary">SIGN UP</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

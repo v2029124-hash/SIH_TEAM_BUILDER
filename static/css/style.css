@@ -1,0 +1,677 @@
+/* =========================================
+   BASE STYLES & VARIABLES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap');
+
+:root {
+    /* Colors extracted from the SIH poster */
+    --sih-dark-green: #083323;
+    --sih-neon-green: #7ed957;
+    --sih-orange: #d97736;
+    --sih-light-bg: #f4faf6;
+    --sih-white: #ffffff;
+    --sih-border: #b3dfc9;
+    
+    --font-main: 'Montserrat', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--sih-light-bg);
+    color: var(--sih-dark-green);
+    font-family: var(--font-main);
+    /* Subtle dot pattern to mimic the tech background */
+    background-image: radial-gradient(var(--sih-border) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   NAVIGATION BAR
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    background: var(--sih-dark-green);
+    color: var(--sih-white);
+    border-bottom: 4px solid var(--sih-neon-green);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand {
+    text-decoration: none;
+    display: block;
+}
+
+.nav-brand h1 {
+    font-size: 1.5rem;
+    color: var(--sih-white);
+}
+
+.nav-brand h1 span {
+    color: var(--sih-neon-green);
+}
+
+.presented-by {
+    font-size: 0.75rem;
+    color: var(--sih-border);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    color: var(--sih-white);
+    text-decoration: none;
+    font-weight: 700;
+    margin-right: 20px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--sih-neon-green);
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+.btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.btn-primary { 
+    background: var(--sih-neon-green); 
+    color: var(--sih-dark-green); 
+}
+
+.btn-primary:hover { 
+    background: var(--sih-white); 
+    color: var(--sih-dark-green);
+    box-shadow: 0 0 10px var(--sih-neon-green);
+}
+
+.btn-whatsapp { 
+    background: var(--sih-dark-green); 
+    color: var(--sih-white); 
+    width: 100%; 
+    text-align: center;
+    margin-top: 15px;
+    border: 1px solid var(--sih-dark-green);
+}
+
+.btn-whatsapp:hover { 
+    background: var(--sih-orange); 
+    border-color: var(--sih-orange);
+}
+
+/* =========================================
+   LANDING PAGE STYLES
+   ========================================= */
+.landing-wrapper {
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.landing-hero {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 60px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.huge-title {
+    /* Reduced from 4.5rem to fit the longer text on one line */
+    font-size: 3.5rem; 
+    line-height: 1.1;
+    color: var(--sih-dark-green);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px rgba(126, 217, 87, 0.2);
+}
+
+.huge-title .highlight {
+    color: var(--sih-neon-green);
+    /* Remove the buggy webkit stroke */
+    -webkit-text-stroke: 0; 
+    
+    /* Use an 8-point text-shadow to create a clean, solid 2px outline */
+    text-shadow: 
+        -2px -2px 0 var(--sih-dark-green),
+         2px -2px 0 var(--sih-dark-green),
+        -2px  2px 0 var(--sih-dark-green),
+         2px  2px 0 var(--sih-dark-green),
+        -2px  0px 0 var(--sih-dark-green),
+         2px  0px 0 var(--sih-dark-green),
+         0px -2px 0 var(--sih-dark-green),
+         0px  2px 0 var(--sih-dark-green);
+}
+
+.motto-text {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--sih-dark-green);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.landing-desc {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin: 0 auto 40px;
+    max-width: 650px;
+}
+
+.landing-cta-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-large {
+    font-size: 1.1rem;
+    padding: 15px 35px;
+    border: 2px solid var(--sih-dark-green);
+}
+
+.cta-secondary {
+    background: var(--sih-dark-green);
+    color: var(--sih-neon-green);
+    font-size: 1.1rem;
+    padding: 15px 35px;
+    border: 2px solid var(--sih-neon-green);
+}
+
+.cta-secondary:hover {
+    background: var(--sih-orange);
+    color: var(--sih-white);
+    border-color: var(--sih-orange);
+}
+
+.landing-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+.feature-card {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   EXPLORE PAGE (HERO & FILTER)
+   ========================================= */
+.hero {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.hero h2 { 
+    font-size: 3rem; 
+    margin-bottom: 10px;
+    color: var(--sih-dark-green);
+}
+
+.hero h2 span { color: var(--sih-neon-green); }
+
+.hero p { 
+    color: var(--sih-dark-green); 
+    font-weight: 600;
+    max-width: 600px; 
+    margin: 0 auto 30px; 
+    line-height: 1.6; 
+}
+
+.search-filter-bar form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-input, .campus-select {
+    padding: 12px;
+    border: 2px solid var(--sih-dark-green);
+    border-radius: 4px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1rem;
+    background: var(--sih-white);
+}
+
+.search-input { flex: 1; }
+
+/* =========================================
+   TEAM GRID & TECH CARDS
+   ========================================= */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+    padding-bottom: 60px;
+}
+
+.tech-card {
+    background-color: var(--sih-white);
+    border: 2px solid var(--sih-neon-green);
+    border-radius: 12px;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(8, 51, 35, 0.08);
+    transition: transform 0.3s ease;
+}
+
+/* Tech Corner Brackets */
+.tech-card::before, .tech-card::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+}
+.tech-card::before {
+    top: -2px;
+    left: -2px;
+    border-top: 4px solid var(--sih-dark-green);
+    border-left: 4px solid var(--sih-dark-green);
+    border-top-left-radius: 12px;
+}
+.tech-card::after {
+    bottom: -2px;
+    right: -2px;
+    border-bottom: 4px solid var(--sih-dark-green);
+    border-right: 4px solid var(--sih-dark-green);
+    border-bottom-right-radius: 12px;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Angled Banner for Campus & Tags */
+.angled-banner {
+    background-color: var(--sih-dark-green);
+    color: var(--sih-orange);
+    clip-path: polygon(5% 0, 95% 0, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+    padding: 6px 30px;
+    display: inline-block;
+    font-weight: 900;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.badge-128 { color: var(--sih-neon-green); }
+.badge-62 { color: var(--sih-orange); }
+
+.team-name { 
+    font-size: 1.5rem; 
+    margin-bottom: 5px; 
+    color: var(--sih-dark-green);
+}
+
+.team-leader { 
+    color: var(--sih-orange); 
+    font-weight: 700; 
+    font-size: 0.9rem; 
+    text-transform: uppercase;
+    margin-bottom: 20px; 
+}
+
+/* Circular Icon List */
+.card-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.card-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.icon-circle {
+    background-color: var(--sih-dark-green);
+    color: var(--sih-neon-green);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+.list-content h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.85rem;
+    color: var(--sih-dark-green);
+}
+
+.list-content p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #4a4a4a;
+    font-weight: 600;
+}
+
+.card-divider {
+    border: none;
+    border-top: 1px dashed var(--sih-border);
+    margin: 20px 0;
+}
+
+.empty-state {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 50px;
+    background: var(--sih-white);
+    border: 2px dashed var(--sih-border);
+    border-radius: 12px;
+}
+
+/* =========================================
+   FORM STYLING (CREATE PAGE)
+   ========================================= */
+.form-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: var(--sih-white);
+    padding: 35px;
+    border-radius: 12px;
+    border: 2px solid var(--sih-dark-green);
+    box-shadow: 0 10px 20px rgba(8, 51, 35, 0.08);
+    position: relative;
+}
+
+.form-container::before, .form-container::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+}
+.form-container::before {
+    top: -2px; left: -2px;
+    border-top: 4px solid var(--sih-neon-green);
+    border-left: 4px solid var(--sih-neon-green);
+    border-top-left-radius: 12px;
+}
+.form-container::after {
+    bottom: -2px; right: -2px;
+    border-bottom: 4px solid var(--sih-neon-green);
+    border-right: 4px solid var(--sih-neon-green);
+    border-bottom-right-radius: 12px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    color: var(--sih-dark-green);
+    font-size: 2rem;
+}
+
+.form-group { 
+    margin-bottom: 20px; 
+}
+
+.form-group label { 
+    display: block; 
+    margin-bottom: 8px; 
+    font-weight: 700; 
+    color: var(--sih-dark-green);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--sih-border);
+    border-radius: 4px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1rem;
+    background: var(--sih-light-bg);
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--sih-neon-green);
+}
+
+.full-width { 
+    width: 100%; 
+    font-size: 1.1rem;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+/* =========================================
+   📱 MOBILE RESPONSIVE UI (PHONES & TABLETS)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Main containers */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Navbar */
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 1rem;
+        text-align: center;
+    }
+    .nav-actions {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+    .nav-link {
+        margin-right: 0;
+        padding: 5px;
+    }
+    .nav-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Landing Page Resizing */
+    .huge-title { 
+        font-size: 2.8rem; 
+    }
+    .motto-text { 
+        font-size: 1.1rem; 
+    }
+    .landing-cta-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    .landing-cta-group .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Explore Hero Section */
+    .hero {
+        padding: 30px 0;
+    }
+    .hero h2 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    /* Search & Filter Bar */
+    .search-filter-bar form {
+        flex-direction: column;
+        width: 100%;
+    }
+    .search-input, .campus-select, .search-filter-bar .btn {
+        width: 100%;
+    }
+
+    /* Grid and Cards */
+    .team-grid {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+    .tech-card {
+        padding: 20px;
+    }
+    .team-name {
+        font-size: 1.3rem;
+    }
+
+    /* Create Team Form */
+    .form-container {
+        margin: 20px 10px;
+        padding: 25px 20px;
+    }
+    .form-header h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Extra tweak for very small screens */
+@media screen and (max-width: 400px) {
+    .card-list li {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .icon-circle {
+        margin-bottom: 5px;
+    }
+}
+
+/* --- GLOBAL MOBILE SAFEGUARD --- */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* --- HERO TITLE RESPONSIVENESS --- */
+.huge-title {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 20px auto;
+}
+
+.huge-title .hero-sub-text {
+    display: block;
+    font-size: clamp(1.4rem, 5.5vw, 3rem);
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+.huge-title .highlight {
+    display: block;
+    font-size: clamp(1.8rem, 7.5vw, 3.5rem);
+}
+
+/* --- MOBILE NAVBAR & LAYOUT ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px 10px;
+        text-align: center;
+    }
+
+    .nav-brand h1 {
+        font-size: 1.4rem;
+    }
+
+    .nav-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .nav-actions .nav-link {
+        margin-left: 0 !important;
+        font-size: 0.8rem;
+    }
+
+    .nav-actions .btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .landing-hero {
+        padding: 10px 5px;
+    }
+
+    .angled-banner {
+        font-size: 0.85rem !important;
+        padding: 6px 15px !important;
+        max-width: 90vw;
+        margin: 0 auto 15px auto;
+    }
+
+    .landing-cta-group {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .landing-cta-group .btn {
+        width: 100%;
+    }
+}

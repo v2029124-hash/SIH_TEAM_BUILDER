@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form-container" style="max-width: 450px;">
+    <div class="form-header">
+        <h2>WELCOME <span>BACK</span></h2>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div style="color: #ef4444; font-weight: bold; text-align: center; margin-bottom: 20px;">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/login" method="POST">
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary full-width" style="border: 2px solid var(--sih-dark-green);">LOGIN</button>
+    </form>
+    <p style="text-align: center; margin-top: 20px; font-weight: 600;">Don't have an account? <a href="/signup" style="color: var(--sih-dark-green);">Sign up</a></p>
+</div>
+{% endblock %}

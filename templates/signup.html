@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form-container" style="max-width: 500px;">
+    <div class="form-header">
+        <h2>JOIN THE <span>NETWORK</span></h2>
+    </div>
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div style="color: #ef4444; font-weight: bold; text-align: center; margin-bottom: 20px;">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/signup" method="POST">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" name="whatsapp_number" placeholder="+91..." required>
+        </div>
+        <div class="form-group">
+            <label>Your Campus</label>
+            <select name="campus" required>
+                <option value="JIIT 128">JIIT 128</option>
+                <option value="JIIT 62">JIIT 62</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary full-width" style="border: 2px solid var(--sih-dark-green);">CREATE ACCOUNT</button>
+    </form>
+</div>
+{% endblock %}

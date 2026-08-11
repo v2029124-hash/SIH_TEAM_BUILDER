@@ -1,0 +1,5 @@
+Flask==3.0.3
+prisma==0.13.1
+python-dotenv==1.0.1
+Flask-Limiter==3.8.0
+gunicorn==21.2.0

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="background-color: var(--bg-cream); border: 5px solid var(--dark-green); border-radius: 15px; box-shadow: 8px 8px 0px var(--lime-green);">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 900; color: var(--dark-green); text-transform: uppercase;">
+                        JOIN THE TALENT POOL
+                    </h2>
+                    <p class="text-center mb-4" style="font-weight: 700; color: var(--text-dark);">
+                        List your skills so team leaders can recruit you!
+                    </p>
+
+                    <form method="POST" action="{{ url_for('join_talent_pool') }}">
+                        
+                        <div class="mb-3">
+                            <label class="form-label" style="font-weight: 900; color: var(--orange); text-transform: uppercase;">Your Tech Stack & Skills</label>
+                            <input type="text" class="form-control" name="skills" placeholder="e.g., Python, React, UI/UX Design, Figma" value="{{ existing_profile.skills if existing_profile else '' }}" required style="border: 3px solid var(--dark-green); border-radius: 8px;">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" style="font-weight: 900; color: var(--orange); text-transform: uppercase;">The Pitch (What do you want to build?)</label>
+                            <textarea class="form-control" name="bio" rows="3" placeholder="e.g., I'm a backend dev looking to join a cybersecurity or AI project." required style="border: 3px solid var(--dark-green); border-radius: 8px;">{{ existing_profile.bio if existing_profile else '' }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" style="font-weight: 900; color: var(--orange); text-transform: uppercase;">WhatsApp Number</label>
+                            <input type="text" class="form-control" name="whatsapp" placeholder="10-digit number (No +91 needed)" value="{{ existing_profile.whatsapp if existing_profile else '' }}" required style="border: 3px solid var(--dark-green); border-radius: 8px;">
+                            <small style="font-weight: 700;">Team leaders will use this to recruit you.</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label" style="font-weight: 900; color: var(--orange); text-transform: uppercase;">Home Campus</label>
+                            <select class="form-select" name="campus" required style="border: 3px solid var(--dark-green); border-radius: 8px; font-weight: 700;">
+                                <option value="JIIT 128" {% if existing_profile and existing_profile.campus == 'JIIT 128' %}selected{% endif %}>JIIT 128</option>
+                                <option value="JIIT 62" {% if existing_profile and existing_profile.campus == 'JIIT 62' %}selected{% endif %}>JIIT 62</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn w-100" style="background-color: var(--lime-green); color: var(--dark-green); font-weight: 900; font-size: 1.2rem; border: 3px solid var(--dark-green); padding: 12px;">
+                            {% if existing_profile %}UPDATE MY PROFILE{% else %}PUBLISH MY PROFILE{% endif %}
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
